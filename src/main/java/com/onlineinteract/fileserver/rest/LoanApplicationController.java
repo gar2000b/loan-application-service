@@ -19,9 +19,7 @@ import org.springframework.web.client.RestTemplate;
 public class LoanApplicationController {
 
 	/**
-	 * curl -i -H "Content-Type:application/json" -X POST --data
-	 * '{"CustomerId":"1234","Location":"Toronto","AmountRequested":"1000.00","Denomination":"CAD","LoanPeriod":"2
-	 * Years"}' http://localhost:8080/application
+	 * curl -i -H "Content-Type:application/json" -X POST --data '{"CustomerId":"1234","Location":"Toronto","AmountRequested":"1000.00","Denomination":"CAD","LoanPeriod":"2 Years"}' http://localhost:9080/application
 	 * 
 	 * @param value
 	 * @return
@@ -35,7 +33,7 @@ public class LoanApplicationController {
 		System.out.println("Denomination: " + application.get("Denomination"));
 		System.out.println("Loan Period: " + application.get("LoanPeriod"));
 
-		String socialInsuranceWorkflowUrl = "http://localhost:8081/verifySin";
+		String socialInsuranceWorkflowUrl = "http://localhost:9081/verifySin";
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
