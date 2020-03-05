@@ -33,7 +33,7 @@ public class LoanApplicationController {
 		System.out.println("Denomination: " + application.get("Denomination"));
 		System.out.println("Loan Period: " + application.get("LoanPeriod"));
 
-		String socialInsuranceWorkflowUrl = "http://localhost:9081/verifySin";
+		String socialInsuranceWorkflowUrl = "http://social-insurance-workflow-service:9081/verifySin";
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
