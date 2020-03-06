@@ -1,0 +1,26 @@
+version: '2'
+services:
+  loan-application-service:
+    image: gar2000b/loan-application-service
+    ports:
+      - 9080:9080
+
+  social-insurance-workflow-service:
+    image: gar2000b/social-insurance-workflow-service
+    ports:
+      - 9081:9081
+
+  customer-service:
+    image: gar2000b/customer-service
+    ports:
+      - 9082:9082
+
+  fraud-check-service:
+    image: gar2000b/fraud-check-service
+    ports:
+      - 9083:9083
+
+  social-insurance-verification-service:
+    image: gar2000b/social-insurance-verification-service
+    ports:
+      - 9085:9085

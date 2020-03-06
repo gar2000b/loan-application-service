@@ -19,3 +19,10 @@ docker image rm gar2000b/loan-application-service
 docker exec -it loan-application-service sh  
 docker login  
 docker push gar2000b/loan-application-service  
+
+For Docker Compose:
+
+docker-compose up -d  
+docker-compose down  
+docker-compose start  
+docker-compose stop  
