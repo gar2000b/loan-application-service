@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loan-application-deployment
-  annotations: 
-    "consul.hashicorp.com/connect-inject": "true"
   labels:
     app: loan-application
 spec:
@@ -15,6 +13,8 @@ spec:
   template:
     metadata:
       name: loan-application-pod
+      annotations: 
+        "consul.hashicorp.com/connect-inject": "true"
       labels:
         name: loan-application-pod
         app: loan-application
