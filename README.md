@@ -34,3 +34,6 @@ kubectl create -f .
 
 To remove all, execute the script:  
 ./remove-deployments-services.sh
+
+To test:  
+curl -i -H "Content-Type:application/json" -X POST --data '{"CustomerId":"1234","Location":"Toronto","AmountRequested":"1000.00","Denomination":"CAD","LoanPeriod":"2 Years"}' http://IP-ADDRESS-HERE:9080/application
