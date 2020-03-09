@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-insurance-verification-deployment
+  labels:
+    app: social-insurance-verification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: social-insurance-verification-pod
+      app: social-insurance-verification
+  template:
+    metadata:
+      name: social-insurance-verification-pod
+      labels:
+        name: social-insurance-verification-pod
+        app: social-insurance-verification
+
+    spec:
+      containers:
+      - name: social-insurance-verification
+        image: gar2000b/social-insurance-verification-service
+        ports:
+        - containerPort: 9085

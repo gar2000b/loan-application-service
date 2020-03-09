@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-insurance-workflow-deployment
+  labels:
+    app: social-insurance-workflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: social-insurance-workflow-pod
+      app: social-insurance-workflow
+  template:
+    metadata:
+      name: social-insurance-workflow-pod
+      labels:
+        name: social-insurance-workflow-pod
+        app: social-insurance-workflow
+
+    spec:
+      containers:
+      - name: social-insurance-workflow
+        image: gar2000b/social-insurance-workflow-service
+        ports:
+        - containerPort: 9081

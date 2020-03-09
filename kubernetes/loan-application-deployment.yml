@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loan-application-deployment
+  labels:
+    app: loan-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: loan-application-pod
+      app: loan-application
+  template:
+    metadata:
+      name: loan-application-pod
+      labels:
+        name: loan-application-pod
+        app: loan-application
+
+    spec:
+      containers:
+      - name: loan-application
+        image: gar2000b/loan-application-service
+        ports:
+        - containerPort: 9080

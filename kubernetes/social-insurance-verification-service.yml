@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-insurance-verification-service
+  labels:
+    name: social-insurance-verification-service-service
+    app: social-insurance-verification
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 9085
+    targetPort: 9085
+  selector:
+    name: social-insurance-verification-pod
+    app: social-insurance-verification

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-check-deployment
+  labels:
+    app: fraud-check
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: fraud-check-pod
+      app: fraud-check
+  template:
+    metadata:
+      name: fraud-check-pod
+      labels:
+        name: fraud-check-pod
+        app: fraud-check
+
+    spec:
+      containers:
+      - name: fraud-check
+        image: gar2000b/fraud-check-service
+        ports:
+        - containerPort: 9083

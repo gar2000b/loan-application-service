@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-insurance-workflow-service
+  labels:
+    name: social-insurance-workflow-service-service
+    app: social-insurance-workflow
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 9081
+    targetPort: 9081
+  selector:
+    name: social-insurance-workflow-pod
+    app: social-insurance-workflow
