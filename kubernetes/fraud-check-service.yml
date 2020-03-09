@@ -6,7 +6,7 @@ metadata:
     name: fraud-check-service-service
     app: fraud-check
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 9083
     targetPort: 9083

@@ -6,7 +6,7 @@ metadata:
     name: social-insurance-verification-service-service
     app: social-insurance-verification
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 9085
     targetPort: 9085

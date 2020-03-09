@@ -6,7 +6,7 @@ metadata:
     name: social-insurance-workflow-service-service
     app: social-insurance-workflow
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 9081
     targetPort: 9081

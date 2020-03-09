@@ -6,7 +6,7 @@ metadata:
     name: customer-service-service
     app: customer
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 9082
     targetPort: 9082
