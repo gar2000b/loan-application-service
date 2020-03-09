@@ -15,6 +15,7 @@ spec:
       name: loan-application-pod
       annotations: 
         "consul.hashicorp.com/connect-inject": "true"
+        "consul.hashicorp.com/connect-service-upstreams": "social-insurance-workflow-service:9081"
       labels:
         name: loan-application-pod
         app: loan-application

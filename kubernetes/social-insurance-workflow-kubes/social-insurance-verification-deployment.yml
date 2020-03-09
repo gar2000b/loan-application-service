@@ -13,6 +13,8 @@ spec:
   template:
     metadata:
       name: social-insurance-verification-pod
+      annotations: 
+        "consul.hashicorp.com/connect-inject": "true"
       labels:
         name: social-insurance-verification-pod
         app: social-insurance-verification

@@ -13,6 +13,8 @@ spec:
   template:
     metadata:
       name: customer-pod
+      annotations: 
+        "consul.hashicorp.com/connect-inject": "true"
       labels:
         name: customer-pod
         app: customer

@@ -13,6 +13,8 @@ spec:
   template:
     metadata:
       name: fraud-check-pod
+      annotations: 
+        "consul.hashicorp.com/connect-inject": "true"
       labels:
         name: fraud-check-pod
         app: fraud-check
