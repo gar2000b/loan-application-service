@@ -30,7 +30,8 @@ docker-compose stop
 For the whole social insurance workflow suite with Kubernetes
 
 cd kubernetes/social-insurance-workflow-kubes  
-kubectl create -f .
+kubectl create -f .  
+kubectl port-forward loan-application 9080:9080
 
 To remove all, execute the script:  
 ./remove-deployments-services.sh
