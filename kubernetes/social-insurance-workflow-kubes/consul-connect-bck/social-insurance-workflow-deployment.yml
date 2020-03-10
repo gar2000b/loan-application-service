@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: social-insurance-workflow-deployment
+  name: social-insurance-workflow
   labels:
     app: social-insurance-workflow
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: social-insurance-workflow-pod
+      name: social-insurance-workflow
       app: social-insurance-workflow
   template:
     metadata:
-      name: social-insurance-workflow-pod
+      name: social-insurance-workflow
       annotations: 
         "consul.hashicorp.com/connect-inject": "true"
-        "consul.hashicorp.com/connect-service-upstreams": "fraud-check-service:9083"
-        "consul.hashicorp.com/connect-service-upstreams": "customer-service:9082"
-        "consul.hashicorp.com/connect-service-upstreams": "social-insurance-verification-service:9085"
+        "consul.hashicorp.com/connect-service-upstreams": "fraud-check:9083"
+        "consul.hashicorp.com/connect-service-upstreams": "customer:9082"
+        "consul.hashicorp.com/connect-service-upstreams": "social-insurance-verification:9085"
       labels:
-        name: social-insurance-workflow-pod
+        name: social-insurance-workflow
         app: social-insurance-workflow
 
     spec:

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fraud-check
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fraud-check
+  annotations:
+    "consul.hashicorp.com/connect-inject": "true"
+spec:
+  containers:
+  - name: fraud-check
+    image: gar2000b/fraud-check-service
+    ports:
+    - containerPort: 9083
+      name: http
+  serviceAccountName: fraud-check

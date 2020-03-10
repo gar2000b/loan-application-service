@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer-service
+  name: customer
   labels:
-    name: customer-service-service
+    name: customer
     app: customer
 spec:
   type: ClusterIP
@@ -11,5 +11,5 @@ spec:
   - port: 9082
     targetPort: 9082
   selector:
-    name: customer-pod
+    name: customer
     app: customer

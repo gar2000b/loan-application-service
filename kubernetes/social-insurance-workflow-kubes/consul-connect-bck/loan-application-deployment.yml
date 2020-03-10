@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: loan-application-deployment
+  name: loan-application
   labels:
     app: loan-application
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: loan-application-pod
+      name: loan-application
       app: loan-application
   template:
     metadata:
-      name: loan-application-pod
+      name: loan-application
       annotations: 
         "consul.hashicorp.com/connect-inject": "true"
-        "consul.hashicorp.com/connect-service-upstreams": "social-insurance-workflow-service:9081"
+        "consul.hashicorp.com/connect-service-upstreams": "social-insurance-workflow:9081"
       labels:
-        name: loan-application-pod
+        name: loan-application
         app: loan-application
 
     spec:

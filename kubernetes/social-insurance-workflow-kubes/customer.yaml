@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: customer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: customer
+  annotations:
+    "consul.hashicorp.com/connect-inject": "true"
+spec:
+  containers:
+  - name: customer
+    image: gar2000b/customer-service
+    ports:
+    - containerPort: 9082
+      name: http
+  serviceAccountName: customer

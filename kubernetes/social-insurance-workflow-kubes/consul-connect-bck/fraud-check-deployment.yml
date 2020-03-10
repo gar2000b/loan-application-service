@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customer-deployment
+  name: fraud-check
   labels:
-    app: customer
+    app: fraud-check
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: customer-pod
-      app: customer
+      name: fraud-check
+      app: fraud-check
   template:
     metadata:
-      name: customer-pod
+      name: fraud-check
       annotations: 
         "consul.hashicorp.com/connect-inject": "true"
       labels:
-        name: customer-pod
-        app: customer
+        name: fraud-check
+        app: fraud-check
 
     spec:
       containers:
-      - name: customer
-        image: gar2000b/customer-service
+      - name: fraud-check
+        image: gar2000b/fraud-check-service
         ports:
-        - containerPort: 9082
+        - containerPort: 9083

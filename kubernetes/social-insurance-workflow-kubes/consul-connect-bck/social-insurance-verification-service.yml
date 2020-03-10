@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: social-insurance-verification-service
+  name: social-insurance-verification
   labels:
-    name: social-insurance-verification-service-service
+    name: social-insurance-verification
     app: social-insurance-verification
 spec:
   type: ClusterIP
@@ -11,5 +11,5 @@ spec:
   - port: 9085
     targetPort: 9085
   selector:
-    name: social-insurance-verification-pod
+    name: social-insurance-verification
     app: social-insurance-verification

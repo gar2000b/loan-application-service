@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: social-insurance-verification
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: social-insurance-verification
+  annotations:
+    "consul.hashicorp.com/connect-inject": "true"
+spec:
+  containers:
+  - name: social-insurance-verification
+    image: gar2000b/social-insurance-verification-service
+    ports:
+    - containerPort: 9085
+      name: http
+  serviceAccountName: social-insurance-verification

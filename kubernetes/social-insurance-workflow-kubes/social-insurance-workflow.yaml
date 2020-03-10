@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: social-insurance-workflow
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: social-insurance-workflow
+  annotations:
+    "consul.hashicorp.com/connect-inject": "true"
+    "consul.hashicorp.com/connect-service-upstreams": "fraud-check:9083,customer:9082,social-insurance-verification:9085"
+spec:
+  containers:
+  - name: social-insurance-workflow
+    image: gar2000b/social-insurance-workflow-service
+    ports:
+    - containerPort: 9081
+      name: http
+    env:
+    - name: FRAUD_CHECK_SERVICE_URL
+      value: "http://localhost:9083"
+    - name: CUSTOMER_SERVICE_URL
+      value: "http://localhost:9082"
+    - name: SOCIAL_INSURANCE_VERIFICATION_SERVICE_URL
+      value: "http://localhost:9085"
+  serviceAccountName: social-insurance-workflow
+---
+apiVersion: 'v1'
+kind: 'Service'
+metadata:
+  name: 'social-insurance-workflow-service-load-balancer'
+  namespace: 'default'
+  labels:
+    app: 'social-insurance-workflow'
+spec:
+  ports:
+    - protocol: 'TCP'
+      port: 9081
+      targetPort: 9081
+  selector:
+    app: 'social-insurance-workflow'
+  type: 'LoadBalancer'
+  loadBalancerIP: ''
+  
