@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-insurance-verification
+  labels:
+    app: social-insurance-verification
+    service: social-insurance-verification
+spec:
+  ports:
+  - port: 9085
+    name: http
+  selector:
+    app: social-insurance-verification
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: social-insurance-verification
+  labels:
+    account: social-insurance-verification
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-insurance-verification
+  labels:
+    app: social-insurance-verification
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: social-insurance-verification
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: social-insurance-verification
+        version: v1
+    spec:
+      serviceAccountName: social-insurance-verification
+      containers:
+      - name: social-insurance-verification
+        image: gar2000b/social-insurance-verification-service
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9085

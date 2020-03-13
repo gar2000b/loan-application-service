@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud-check
+  labels:
+    app: fraud-check
+    service: fraud-check
+spec:
+  ports:
+  - port: 9083
+    name: http
+  selector:
+    app: fraud-check
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fraud-check
+  labels:
+    account: fraud-check
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-check
+  labels:
+    app: fraud-check
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fraud-check
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: fraud-check
+        version: v1
+    spec:
+      serviceAccountName: fraud-check
+      containers:
+      - name: fraud-check
+        image: gar2000b/fraud-check-service
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9083
