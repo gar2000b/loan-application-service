@@ -41,7 +41,7 @@ spec:
       serviceAccountName: social-insurance-workflow
       containers:
       - name: social-insurance-workflow
-        image: gar2000b/social-insurance-workflow-service
+        image: gar2000b/social-insurance-workflow-service:istio
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9081

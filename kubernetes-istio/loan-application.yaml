@@ -41,7 +41,7 @@ spec:
       serviceAccountName: loan-application
       containers:
       - name: loan-application
-        image: gar2000b/loan-application-service
+        image: gar2000b/loan-application-service:istio
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
