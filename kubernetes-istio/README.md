@@ -17,7 +17,7 @@ istioctl manifest apply --set profile=demo
 Add default namespace label:  
 kubectl label namespace default istio-injection=enabled
 
-Deploy the apps one at a time (recommend a 10 sec gap once the pods are running):  
+Deploy the apps one at a time (recommend a 10 sec gap - basically proceed to next once the pods are running):  
 kubectl appy -f loan-application.yaml  
 kubectl get all  
 kubectl appy -f customer.yaml  
@@ -30,7 +30,7 @@ kubectl appy -f social-insurance-workflow.yaml
 kubectl get all  
 
 Deploy gateway:  
-kubectl apply -f gateway/social-insurance-gateway.yaml
+kubectl apply -f gateway/social-insurance-gateway.yaml  
 kubectl get gateway
 
 Expose ingress IP and ports:  
