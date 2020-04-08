@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +27,7 @@ public class LoanApplicationController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/plain", value = "/application")
 	@ResponseBody
-	public ResponseEntity<String> processApplication(@RequestBody Map<String, String> application) {
+	public ResponseEntity<String> processApplication(@RequestBody Map<String, String> application, @RequestHeader HttpHeaders incomingHeaders) {
 		System.out.println("\nProcessing Application with customer ID: " + application.get("CustomerId"));
 		System.out.println("Location: " + application.get("Location"));
 		System.out.println("Amount Requested: " + application.get("AmountRequested"));
@@ -36,6 +37,7 @@ public class LoanApplicationController {
 		String socialInsuranceWorkflowUrl = "http://social-insurance-workflow:9081/verifySin";
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
+		headers.addAll(incomingHeaders);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<String> request = new HttpEntity<String>(
 				"{\"CustomerId\":\"" + application.get("CustomerId") + "\"}", headers);
