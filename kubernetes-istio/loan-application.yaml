@@ -6,6 +6,7 @@ metadata:
     app: loan-application
     service: loan-application
 spec:
+  type: NodePort
   ports:
   - port: 9080
     name: http
