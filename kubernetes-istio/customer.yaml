@@ -41,7 +41,7 @@ spec:
       serviceAccountName: customer
       containers:
       - name: customer
-        image: gar2000b/customer-service
+        image: gar2000b/customer-service:istio4
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9082
