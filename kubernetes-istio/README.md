@@ -56,3 +56,9 @@ Make sure namespace is set to default.
 
 Most of this info is taken from: https://istio.io/docs/setup/getting-started/
 
+Switch namespace is Kubernetes:
+kubectl config set-context --current --namespace=my-namespace
+
+Create a new namespace:
+kubectl create namespace namespace-name
+

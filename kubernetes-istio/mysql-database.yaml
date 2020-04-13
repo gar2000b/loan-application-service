@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-database
+  labels:
+    app: mysql-database
+    service: mysql-database
+spec:
+  type: NodePort
+  ports:
+  - port: 3306
+    name: dbport
+  selector:
+    app: mysql-database
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mysql-database
+  labels:
+    account: mysql-database
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-database
+  labels:
+    app: mysql-database
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-database
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mysql-database
+        version: v1
+    spec:
+      serviceAccountName: mysql-database
+      containers:
+      - name: mysql-database
+        image: gar2000b/mysql:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3306
