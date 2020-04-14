@@ -41,6 +41,33 @@ spec:
       serviceAccountName: fraud-check
       containers:
       - name: fraud-check
+        image: gar2000b/fraud-check-service:istio3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9083
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-check-v2
+  labels:
+    app: fraud-check
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fraud-check
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: fraud-check
+        version: v2
+    spec:
+      serviceAccountName: fraud-check
+      containers:
+      - name: fraud-check
         image: gar2000b/fraud-check-service
         imagePullPolicy: IfNotPresent
         ports:
