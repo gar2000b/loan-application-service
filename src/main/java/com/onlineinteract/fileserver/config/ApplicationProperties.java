@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ApplicationProperties {
 
-	@Value("${standup.new.service}")
+	@Value("${socialInsuranceWorkflowUrl}")
 	private String socialInsuranceWorkflowUrl;
 
 	public String getSocialInsuranceWorkflowUrl() {
