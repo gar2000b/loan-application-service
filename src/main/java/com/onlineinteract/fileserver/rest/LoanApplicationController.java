@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -54,6 +55,24 @@ public class LoanApplicationController {
 		ResponseEntity<String> response = restTemplate.postForEntity(socialInsuranceWorkflowUrl, request, String.class);
 		System.out.println("Response from Social Insurance Workflow Service: " + response.getBody());
 
-		return new ResponseEntity<>("Application processed OK", response.getStatusCode());
+		if (response.getStatusCodeValue() == HttpStatus.OK.value() && logCustomer(response.getBody()) == 1) {
+			return new ResponseEntity<>("Application processed OK", response.getStatusCode());
+		} else {
+			return new ResponseEntity<>(
+					"There was a problem processing the payload from the Social Insurance Workflow body: "
+							+ response.getBody(),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+
+	protected Integer logCustomer(String body) {
+		try {
+			Integer customerId = Integer.valueOf(body.substring(body.indexOf(": ") + 2));
+			System.out.println("Logging customer with id: " + customerId);
+			return customerId;
+		} catch (Throwable e) {
+			return -1;
+		}
 	}
 }
